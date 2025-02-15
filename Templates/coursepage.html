@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <style>
+        /* Nord Color Palette */
+        :root {
+            --nord0: #2e3440;
+            --nord1: #3b4252;
+            --nord2: #434c5e;
+            --nord3: #4c566a;
+            --nord4: #d8dee9;
+            --nord5: #e5e9f0;
+            --nord6: #eceff4;
+            --nord7: #8fbcbb;
+            --nord8: #88c0d0;
+            --nord9: #81a1be;
+            --nord10: #5e81ac;
+            --nord11: #bf616a;
+            --nord12: #d08770;
+            --nord13: #ab5c53;
+            --nord14: #ebcb8b;
+            --nord15: #a3be8c;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--nord1);
+            color: var(--nord4);
+            overflow-x: hidden;
+        }
+
+        .courses-page {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--nord9);
+        }
+
+        .page-title {
+            font-size: 2rem;
+            text-align: center;
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .search-filter {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--nord3);
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: var(--nord5);
+            color: var(--nord1);
+        }
+
+        .filter-options {
+            width: 200px;
+            margin-left: 20px;
+            padding: 10px;
+            border: 1px solid var(--nord3);
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: var(--nord5);
+            color: var(--nord1);
+        }
+
+        .course-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            height: calc(100vh - 200px); /* Adjust as needed for header/footer */
+            width: 100%;
+        }
+
+        .course-card {
+            width: 100%;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--nord2);
+            box-sizing: border-box;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card h3 {
+            color: var(--nord4);
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: var(--nord5);
+            flex-grow: 1;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: var(--nord4);
+            border: 1px solid var(--nord3);
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .pagination a:hover,
+        .pagination a.active {
+            background-color: var(--nord9);
+            color: white;
+            border-color: var(--nord9);
+        }
+
+        .pagination .disabled {
+            color: var(--nord3);
+            cursor: default;
+            border-color: var(--nord3);
+            background-color: transparent;
+        }
+
+        .pagination .disabled:hover {
+            background-color: transparent;
+            border-color: var(--nord3);
+            color: var(--nord3);
+        }
+    </style>
+</head>
+<body>
+
+<div class="courses-page">
+    <div class="header">
+        <div class="logo">Your Logo Here</div>
+        <div class="page-title">Courses</div>
+    </div>
+
+    <div class="search-filter">
+        <input type="text" class="search-bar" placeholder="Search Courses">
+        <select class="filter-options">
+            <option value="">Filter by Category</option>
+            <option value="category1">Category 1</option>
+            <option value="category2">Category 2</option>
+        </select>
+    </div>
+
+    <div class="course-list"></div>
+
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<script>
+    const courseList = document.querySelector('.course-list');
+    const pagination = document.getElementById('pagination');
+    const coursesData = [
+{ title: "Course Title 1", description: "Short description of course 1." },
+{ title: "Course Title 2", description: "Short description of course 2." },
+{ title: "Course Title 3", description: "Short description of course 3." },
+{ title: "Course Title 4", description: "Short description of course 4." },
+{ title: "Course Title 5", description: "Short description of course 5." },
+{ title: "Course Title 6", description: "Short description of course 6." },
+{ title: "Course Title 7", description: "Short description of course 7." },
+{ title: "Course Title 8", description: "Short description of course 8." },
+{ title: "Course Title 9", description: "Short description of course 9." },
+{ title: "Course Title 10", description: "Short description of course 10." },
+{ title: "Course Title 11", description: "Short description of course 11." },
+{ title: "Course Title 12", description: "Short description of course 12." },
+{ title: "Course Title 13", description: "Short description of course 13." },
+{ title: "Course Title 14", description: "Short description of course 14." },
+{ title: "Course Title 15", description: "Short description of course 15." },
+{ title: "Course Title 16", description: "Short description of course 16." },
+{ title: "Course Title 17", description: "Short description of course 17." },
+{ title: "Course Title 18", description: "Short description of course 18." },
+{ title: "Course Title 19", description: "Short description of course 19." },
+{ title: "Course Title 20", description: "Short description of course 20." },
+    ]; // Replace with your actual data
+
+    const coursesPerPage = 3;
+    let currentPage = 1;
+
+    function createCourseCards(courses) {
+      courseList.innerHTML = ""; // Clear existing cards
+      courses.forEach(course => {
+        const card = document.createElement('div');
+        card.classList.add('course-card');
+        card.innerHTML = `<h3>${course.title}</h3><p>${course.description}</p>`;
+        courseList.appendChild(card);
+      });
+    }
+
+    function displayCourses(page) {
+        const startIndex = (page - 1) * coursesPerPage;
+        const endIndex = Math.min(startIndex + coursesPerPage, coursesData.length);
+        const coursesToDisplay = coursesData.slice(startIndex, endIndex);
+        createCourseCards(coursesToDisplay);
+    }
+
+    function generatePaginationLinks() {
+        const totalPages = Math.ceil(coursesData.length / coursesPerPage);
+        pagination.innerHTML = '';
+
+        const prevLink = document.createElement('a');
+        prevLink.href = '#';
+        prevLink.innerHTML = '&laquo;';
+        if (currentPage === 1) {
+            prevLink.classList.add('disabled');
+        } else {
+            prevLink.addEventListener('click', () => {
+                currentPage = Math.max(1, currentPage - 1); // Ensure it doesn't go below 1
+                displayCourses(currentPage);
+                updateActiveLink();
+            });
+        }
+        pagination.appendChild(prevLink);
+
+        const maxPagesToShow = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+        let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+        if (endPage - startPage + 1 < maxPagesToShow && totalPages > maxPagesToShow) {
+          startPage = Math.max(1, endPage - maxPagesToShow + 1)
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = i;
+            if (i === currentPage) {
+                link.classList.add('active');
+            }
+            link.addEventListener('click', () => {
+                currentPage = i;
+                displayCourses(currentPage);
+                updateActiveLink();
+            });
+            pagination.appendChild(link);
+        }
+
+        const nextLink = document.createElement('a');
+        nextLink.href = '#';
+        nextLink.innerHTML = '&raquo;';
+        if (currentPage === totalPages) {
+            nextLink.classList.add('disabled');
+        } else {
+            nextLink.addEventListener('click', () => {
+                currentPage = Math.min(totalPages, currentPage + 1); // Ensure it doesn't go beyond totalPages
+                displayCourses(currentPage);
+                updateActiveLink();
+            });
+        }
+        pagination.appendChild(nextLink);
+    }
+
+    function updateActiveLink() {
+        const links = pagination.querySelectorAll('a');
+        links.forEach(link => link.classList.remove('active'));
+        links.forEach(link => {
+          if (parseInt(link.textContent) === currentPage) {
+            link.classList.add('active');
+          }
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        displayCourses(currentPage);
+        generatePaginationLinks();
+    });
+</script>
