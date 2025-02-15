@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Tools for Solo Founders</title>
+    <style>
+        /* Nord Color Palette */
+        :root {
+            --nord0: #2e3440;
+            --nord1: #3b4252;
+            --nord2: #434c5e;
+            --nord3: #4c566a;
+            --nord4: #d8dee9;
+            --nord5: #e5e9f0;
+            --nord6: #eceff4;
+            --nord7: #8fbcbb;
+            --nord8: #88c0d0;
+            --nord9: #81a1be;
+            --nord10: #5e81ac;
+            --nord11: #bf616a;
+            --nord12: #d08770;
+            --nord13: #ab5c53;
+            --nord14: #ebcb8b;
+            --nord15: #a3be8c;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #4c566a; /* Darker background */
+            color: var(--nord4);
+        }
+
+        .homepage {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+            display: flex; /* Enable flexbox for homepage content */
+            flex-direction: column; /* Arrange content vertically */
+        }
+
+        .header { /* New header section for logo and other potential elements */
+            display: flex;
+            justify-content: flex-start; /* Align logo to the left */
+            align-items: center; /* Vertically center logo */
+            margin-bottom: 20px; /* Space below header */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--nord9);
+        }
+
+        .content { /* New content section to hold headline, sub-headline, etc. */
+          text-align: center; /* Center the content within the content area */
+        }
+
+
+        .headline {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--nord4);
+        }
+
+        .sub-headline {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--nord5);
+        }
+
+        .get-started {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            padding: 15px;
+            background-color: var(--nord14);
+            color: var(--nord1);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .get-started:hover {
+            background-color: #d0b060;
+        }
+
+        .features {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .feature {
+            width: calc(33.33% - 20px);
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #e5e9f0; /* Lighter feature card color */
+            box-sizing: border-box;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature h3 {
+            color: var(--nord2); /* Darker heading */
+        }
+
+        .feature p {
+            color: var(--nord3); /* Slightly darker text */
+        }
+
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--nord3);
+            background-color: var(--nord2);
+            color: var(--nord4);
+        }
+
+        @media (max-width: 768px) {
+            .feature {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .feature {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="homepage">
+    <div class="header">
+        <div class="logo">Your Logo Here</div>
+    </div>
+    <div class="content">
+        <div class="headline">Empowering Solo Founders to Launch and Grow</div>
+        <div class="sub-headline">AI-Powered Tools and Resources to Help You Succeed</div>
+        <a href="#" class="get-started">Get Started</a>
+    </div>
+
+
+    <div class="features">
+        <div class="feature">
+            <h3>Feature 1</h3>
+            <p>Description of feature 1.</p>
+        </div>
+        <div class="feature">
+            <h3>Feature 2</h3>
+            <p>Description of feature 2.</p>
+        </div>
+        <div class="feature">
+            <h3>Feature 3</h3>
+            <p>Description of feature 3.</p>
+        </div>
+        <div class="feature">
+            <h3>Feature 4</h3>
+            <p>Description of feature 4.</p>
+        </div>
+        <div class="feature">
+            <h3>Feature 5</h3>
+            <p>Description of feature 5.</p>
+        </div>
+        <div class="feature">
+            <h3>Feature 6</h3>
+            <p>Description of feature 6.</p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    About Us | Contact | Terms of Service
+</div>
+
+</body>
+</html>
