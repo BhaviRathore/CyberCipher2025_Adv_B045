@@ -192,7 +192,16 @@
 
 <div class="footer">
     About Us | Contact | Terms of Service
-</div>
-
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("Homepage loaded!");
+    
+        const getStartedButton = document.querySelector(".get-started");
+    
+        getStartedButton.addEventListener("click", (event) => {
+            console.log("Get Started button clicked");
+        });
+    });
+</script>
 </body>
 </html>
