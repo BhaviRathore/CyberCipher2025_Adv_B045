@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Nord Color Palette */
+        :root {
+            --nord0: #2e3440;
+            --nord1: #3b4252;
+            --nord2: #434c5e;
+            --nord3: #4c566a;
+            --nord4: #d8dee9;
+            --nord5: #e5e9f0;
+            --nord6: #eceff4;
+            --nord7: #8fbcbb;
+            --nord8: #88c0d0;
+            --nord9: #81a1be;
+            --nord10: #5e81ac;
+            --nord11: #bf616a;
+            --nord12: #d08770;
+            --nord13: #ab5c53;
+            --nord14: #ebcb8b;
+            --nord15: #a3be8c;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: var(--nord1); /* Darker background */
+            color: var(--nord4); /* Lighter text */
+        }
+
+        .dashboard {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px; /* Adjust sidebar width as needed */
+            padding-right: 20px;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--nord9);
+            margin-bottom: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: var(--nord2); /* Slightly lighter background for links */
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--nord4);
+            transition: background-color 0.3s ease;
+            text-align: center; /* Center link text */
+        }
+
+        .nav-link:hover {
+            background-color: var(--nord3); /* Slightly darker background on hover */
+        }
+
+
+        .dashboard-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .insights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Spacing between insights */
+        }
+
+        .insight-block {
+            flex: 1; /* Each block takes up equal space */
+            min-width: 250px; /* Minimum width for responsiveness */
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--nord5); /* Lighter background for insights */
+            color: var(--nord1); /* Darker text for contrast */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Add a subtle shadow */
+            border: 1px solid var(--nord4); /* Add a subtle border */
+            text-align: center;
+        }
+
+        .insight-block h2 {
+            margin-bottom: 10px;
+            color: var(--nord2); /* Darker heading */
+        }
+
+        .insight-block p {
+            color: var(--nord3); /* Slightly darker text */
+        }
+
+        .user-widget {
+          text-align: right; /* Align to the right */
+          margin-top: 10px;
+        }
+
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--nord3);
+            background-color: var(--nord2);
+            color: var(--nord4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="sidebar">
+        <div class="logo">Your Logo Here</div>
+        <nav class="nav-links">
+            <a href="homepage.html" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Courses</a>
+            <a href="#" class="nav-link">AI Chatbot</a>
+            <a href="#" class="nav-link">Planning & To-Dos</a>
+            <a href="#" class="nav-link">Networking</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="dashboard-title">Dashboard</div>
+        <div class="user-info">Welcome, User!</div>  
+        <div class="insights">  
+            <div class="insight-block">
+                <h2>Key Metric 1</h2>
+                <p>Value/Description</p>
+            </div>
+            <div class="insight-block">
+                <h2>Key Metric 2</h2>
+                <p>Value/Description</p>
+            </div>
+            <div class="insight-block">
+                <h2>Key Metric 3</h2>
+                <p>Value/Description</p>
+            </div>
+          </div>
+    </div>
+</div>
+
+<div class="footer">
+    About Us | Contact | Terms of Service
+</div>
+
+</body>
+</html>
