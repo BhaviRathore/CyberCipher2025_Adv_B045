@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Nord Color Palette (You can customize these) */
+        :root {
+            --nord0: #2e3440;
+            --nord1: #3b4252;
+            --nord2: #434c5e;
+            --nord3: #4c566a;
+            --nord4: #d8dee9;
+            --nord5: #e5e9f0;
+            --nord6: #eceff4;
+            --nord7: #8fbcbb;
+            --nord8: #88c0d0;
+            --nord9: #81a1be;
+            --nord10: #5e81ac;
+            --nord11: #bf616a;
+            --nord12: #d08770;
+            --nord13: #ab5c53;
+            --nord14: #ebcb8b;
+            --nord15: #a3be8c;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: var(--nord1); /* Darker background */
+            color: var(--nord4); /* Lighter text */
+        }
+
+        .login-page {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            flex: 1; /* Allow login page content to expand */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content horizontally */
+        }
+
+        .logo {
+            font-size: 1.5rem; /* Adjust as needed */
+            font-weight: bold;
+            color: var(--nord9); /* Blue logo */
+            margin-bottom: 20px;
+        }
+
+        .login-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .input-group label { /* Style labels if needed */
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--nord3);
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Include padding in width */
+            background-color: var(--nord2); /* Slightly lighter input background */
+            color: var(--nord4);
+        }
+
+        .login-button {
+            background-color: var(--nord9); /* Blue button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: var(--nord10); /* Darker blue on hover */
+        }
+
+        .forgot-password,
+        .signup {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password a,
+        .signup a {
+            color: var(--nord8); /* Cyan link color */
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover,
+        .signup a:hover {
+            text-decoration: underline;
+        }
+
+
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--nord3);
+            background-color: var(--nord2);
+            color: var(--nord4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-page">
+    <div class="logo">Your Logo Here</div>
+    <div class="login-title">Login</div>
+
+    <div class="input-group">
+        <input type="text" class="input" placeholder="Email/Username">
+    </div>
+    <div class="input-group">
+        <input type="password" class="input" placeholder="Password">
+    </div>
+    <button class="login-button">Login</button>
+
+    <div class="forgot-password">
+        <a href="#">Forgot Password?</a>
+    </div>
+    <div class="signup">
+        Don't have an account? <a href="#">Sign Up</a>
+    </div>
+</div>
+
+<div class="footer">
+    About Us | Contact | Terms of Service
+</div>
+
+</body>
+</html>
