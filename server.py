@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, session, url_for, jsonify
 import firebase_admin
 from firebase_admin import credentials, auth, db
-from chatbot import get_ai_response  # Importing the function from chatbot.py
+from chatbot import get_ai_response, points_of_log  # Importing the function from chatbot.py
 
 
 app = Flask(__name__, template_folder="Templates")
@@ -24,12 +24,15 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
+
+    temp = points_of_log()
+
     if 'user' not in session:
         print("User session not found! Redirecting to login...")
         return redirect(url_for('login'))
 
     print("User session exists:", session['user'])
-    return render_template('dashboard.html', user=session['user'])
+    return render_template('dashboard.html', summary = temp, user=session['user'])
 
 
 @app.route('/verify', methods=['POST'])
@@ -107,5 +110,7 @@ def logout():
 
     return redirect(url_for('login'))
 
+
 if __name__ == '__main__':
     app.run(debug=True)
+

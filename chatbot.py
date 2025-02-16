@@ -64,3 +64,13 @@ def get_ai_response(user_input):
     except Exception as e:
         return "Error in generating response."
 
+def points_of_log():
+    with open(LOG_FILE, "r") as file:
+        conversation = file.read()
+    summary_prompt = f"From this conversation figure out only five relevant topics separated by commas. For each topic give a link of a post or article. Format the answer using HTML format. Do not comment it please I beg you :\n{conversation}\nSummary:"
+    summary_response = client.models.generate_content(
+        model="gemini-2.0-flash", contents=summary_prompt
+    )
+    summary = summary_response.text[8:-4]
+    return summary
+
