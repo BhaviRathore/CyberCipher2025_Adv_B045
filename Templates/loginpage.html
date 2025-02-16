@@ -90,12 +90,6 @@
     <div class="logo">Your Logo</div>
     <h2>Login</h2>
 
-    <form id="login-form">
-        <input type="email" id="email" class="input" placeholder="Email" required>
-        <input type="password" id="password" class="input" placeholder="Password" required>
-        <button type="submit" class="login-button">Login</button>
-    </form>
-
     <button id="google-login" class="login-button">Sign in with Google</button>
 
     <div class="error-message" id="errorMsg"></div>
@@ -125,25 +119,6 @@
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
-
-    // **Email/Password Login**
-    document.getElementById("login-form").addEventListener("submit", async (event) => {
-        event.preventDefault(); // Prevent page refresh
-        
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const errorMsg = document.getElementById("errorMsg");
-
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log("Logged in:", userCredential.user);
-            alert("Login successful!");
-            window.location.href = "dashboard.html"; // Redirect after login
-        } catch (error) {
-            console.error("Login failed:", error.message);
-            errorMsg.innerText = error.message;
-        }
-    });
 
     // **Google Sign-In**
     document.getElementById("google-login").addEventListener("click", async () => {
