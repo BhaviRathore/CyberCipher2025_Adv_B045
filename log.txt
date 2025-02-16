@@ -1,2 +1,14 @@
 The user wants to make money teaching sports (specifically badminton) and is open to teaching "whoever wants to learn". The AI is trying to provide tailored advice but emphasizes that it needs specific information to do so effectively. The AI has pressed the user multiple times to provide their location, whether they have access to facilities/equipment, and more detail about who they want to teach. It can only offer generalized ideas without this key information and asks the user to specify a target demographic within children and teens.
 
+User: Hello
+AI: Hello! Great to be back in conversation. To give you the best advice on making money teaching badminton, I still need a little more information from you. I'm ready to help you brainstorm, but the more specifics you can share, the more tailored my suggestions will be.
+
+Specifically, can you tell me:
+
+*   **Your Location (City/Region):** This is crucial for understanding local demand and pricing.
+*   **Access to Facilities/Equipment:** Do you have access to a badminton court and equipment like nets, racquets, and shuttlecocks, or will you need to secure these?
+*   **Target Demographic (Within Children/Teens):** To help us narrow down the possibilities, can you tell me which age group you would like to teach? (e.g., young children ages 6-10, older children ages 10-12, young teens ages 13-15, or older teens ages 16-18).
+*   **Your Skill Level:** Are you a certified coach, or do you have competitive playing experience?
+
+Once I have this information, I can provide much more targeted advice!
+
