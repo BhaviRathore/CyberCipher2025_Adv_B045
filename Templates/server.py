@@ -1,32 +1,18 @@
-from flask import Flask, request, jsonify
-import google.generativeai as genai
+from flask import Flask, render_template
 
-# Initialize Flask
-app = Flask(__name__)
+app = Flask(__name__, static_folder=".", template_folder=".")
 
-# Set up the AI model (Replace with your actual API key)
-API_KEY = "AIzaSyDm82VTUv_D57vwK3E7ZJ3-GBFAaDdlTfs"
-genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel("gemini-2.0-flash")
-
-@app.route('/')
+@app.route("/")
 def home():
-    return "Server is running!"
+    return render_template("homepage.html")
 
-@app.route('/chat', methods=['POST'])
-def chat():
-    data = request.json
-    user_input = data.get("message", "")
+@app.route("/login")
+def login():
+    return render_template("loginpage.html")
 
-    if not user_input:
-        return jsonify({"error": "Message is required"}), 400
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
 
-    try:
-        response = model.generate_content(user_input)
-        return jsonify({"response": response.text})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-# Run the server
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
