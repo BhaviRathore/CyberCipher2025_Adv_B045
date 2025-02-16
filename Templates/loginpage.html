@@ -122,18 +122,36 @@
 
     // **Google Sign-In**
     document.getElementById("google-login").addEventListener("click", async () => {
-        const errorMsg = document.getElementById("errorMsg");
+    const errorMsg = document.getElementById("errorMsg");
 
-        try {
-            const result = await signInWithPopup(auth, provider);
-            console.log("Google Login Success:", result.user);
-            alert("Google Login successful!");
-            window.location.href = "/dashboard"; // Redirect after login
-        } catch (error) {
-            console.error("Google Login Failed:", error.message);
-            errorMsg.innerText = error.message;
+    try {
+        const result = await signInWithPopup(auth, provider);
+        console.log("Google Login Success:", result.user);
+
+        // Get the Firebase ID Token
+        const idToken = await result.user.getIdToken();
+
+        // Send ID token to Flask for verification and session handling
+        const response = await fetch("/verify", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ idToken }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            window.location.href = "/dashboard"; // Redirect after successful verification
+        } else {
+            errorMsg.innerText = "Authentication failed: " + data.error;
         }
-    });
+    } catch (error) {
+        console.error("Google Login Failed:", error.message);
+        errorMsg.innerText = error.message;
+    }
+});
+
 </script>
 
 </body>

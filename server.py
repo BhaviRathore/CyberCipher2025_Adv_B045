@@ -8,7 +8,7 @@ app.secret_key = "your_secret_key"  # Required for session handling
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate("cybercypher-4ca0c-firebase-adminsdk-fbsvc-d64558a934.json")  # Update with your Firebase credentials
 firebase_admin.initialize_app(cred, {
-    'databaseURL': "https://your-database-url.firebaseio.com"
+    'databaseURL': "https://cybercypher-4ca0c-default-rtdb.asia-southeast1.firebasedatabase.app/"
   # Update with your Firebase DB URL
 })
 
@@ -22,11 +22,13 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    # Redirect to login if not authenticated
     if 'user' not in session:
+        print("User session not found! Redirecting to login...")
         return redirect(url_for('login'))
 
+    print("User session exists:", session['user'])
     return render_template('dashboard.html', user=session['user'])
+
 
 @app.route('/verify', methods=['POST'])
 def verify():
@@ -39,12 +41,17 @@ def verify():
         # Store session
         session['user'] = {'uid': user_id, 'email': user_email}
 
+        # Debugging: Print session
+        print("Session set:", session.get('user'))
+
         # Store session in Firebase DB
         db.reference(f'sessions/{user_id}').set({'email': user_email})
 
         return jsonify({'success': True, 'message': 'Authentication successful'})
     except Exception as e:
+        print("Authentication failed:", str(e))
         return jsonify({'success': False, 'error': str(e)}), 401
+
 
 @app.route('/logout')
 def logout():
