@@ -181,48 +181,39 @@
 
 <script>
     function sendMessage() {
-        const userInput = document.getElementById("userInput");
-        const message = userInput.value;
+    const userInput = document.getElementById("userInput");
+    const message = userInput.value.trim();
 
-        if (message.trim() !== "") {
-            displayMessage(message, "user");
-            userInput.value = "";
+    if (message === "") return;
 
-            // Simulate bot response (replace with your actual API call)
-            setTimeout(() => {
-                const botResponse = getBotResponse(message);
-                displayMessage(botResponse, "bot");
-            }, 500);
-        }
+    displayMessage(message, "user");
+    userInput.value = "";
+
+    fetch("/get-response", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: message }),
+    })
+    .then(response => response.json())
+    .then(data => displayMessage(data.response, "bot"))
+    .catch(error => console.error("Error:", error));
+}
+
+function displayMessage(message, sender) {
+    const chatWindow = document.getElementById("chatWindow");
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add(sender + "-message");
+    messageDiv.textContent = message;
+    chatWindow.appendChild(messageDiv);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+document.getElementById("userInput").addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
     }
+});
 
-    function displayMessage(message, sender) {
-        const chatWindow = document.getElementById("chatWindow");
-        const messageDiv = document.createElement("div");
-        messageDiv.classList.add(sender + "-message");
-        messageDiv.textContent = message;
-        chatWindow.appendChild(messageDiv);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-
-    function getBotResponse(message) {
-        // Replace with your actual AI chatbot logic
-        const responses = [
-            "I'm here to help!",
-            "How can I assist you today?",
-            "Tell me more about what you need.",
-            "That's interesting!",
-            "I'm still learning, but I'll do my best."
-        ];
-        const randomIndex = Math.floor(Math.random() * responses.length);
-        return responses[randomIndex];
-    }
-
-    document.getElementById("userInput").addEventListener("keyup", function(event) {
-        if (event.key === "Enter") {
-            sendMessage();
-        }
-    });
 </script>
 
 </body>

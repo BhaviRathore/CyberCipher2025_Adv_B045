@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, request, session, url_for, jsonify
 import firebase_admin
 from firebase_admin import credentials, auth, db
+from chatbot import get_ai_response  # Importing the function from chatbot.py
+
 
 app = Flask(__name__, template_folder="Templates")
 app.secret_key = "your_secret_key"  # Required for session handling
@@ -51,7 +53,12 @@ def verify():
     except Exception as e:
         print("Authentication failed:", str(e))
         return jsonify({'success': False, 'error': str(e)}), 401
-
+    
+@app.route('/get-response', methods=['POST'])
+def get_response():
+    user_message = request.json.get("message")
+    bot_response = get_ai_response(user_message)
+    return jsonify({"response": bot_response})
 
 @app.route('/logout')
 def logout():

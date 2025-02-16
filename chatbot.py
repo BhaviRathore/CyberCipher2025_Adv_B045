@@ -11,9 +11,11 @@ api_key = os.getenv("GEMINI_API_KEY")
 # Initialize the client with the API key
 client = genai.Client(api_key=api_key)
 
-# Make a request
-response = client.models.generate_content(
-    model="gemini-2.0-flash", contents="Explain how AI works"
-)
-
-print(response.text)
+def get_ai_response(user_input):
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.0-flash", contents=user_input
+        )
+        return response.text
+    except Exception as e:
+        return "Error: Unable to generate response."
