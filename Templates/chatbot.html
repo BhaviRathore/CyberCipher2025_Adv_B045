@@ -95,14 +95,15 @@
         }
 
         .chat-window {
-            flex: 1; /* Take up available space */
-            padding: 10px;
-            border: 1px solid var(--nord3);
-            border-radius: 5px;
-            overflow-y: auto;
-            background-color: var(--nord2);
-            color: var(--nord4);
-        }
+        flex: 1; /* Take up available space */
+        padding: 10px;
+        border: 1px solid var(--nord3);
+        border-radius: 5px;
+        overflow-y: auto;
+        background-color: var(--nord2);
+        color: var(--nord4);
+        max-height: 500px; /* Set a maximum height (adjust as needed) */
+    }
 
         .user-message {
             text-align: right;
