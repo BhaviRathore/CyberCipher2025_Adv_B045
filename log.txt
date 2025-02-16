@@ -1,28 +1,2 @@
-The user wants to make money teaching sports and is open to different options (badminton, basketball). The AI emphasizes the need for specific information (skill level, target audience, location, competition for each sport) to provide tailored and profitable advice. The AI continues to try and get this specific information by asking the user questions about the sport. Without that, it can only offer general suggestions which may not be the most profitable for the user.
-
-User: hi
-AI: Hi there! So, you're looking to make money teaching sports, which is a great idea. We were talking about badminton and basketball earlier, and I'm happy to brainstorm more.
-
-To give you the best advice, could you tell me a little more about what you're thinking? Things like:
-
-*   **What's your skill level in badminton and basketball?** Are you a beginner, intermediate, or advanced player?
-*   **Who do you want to teach?** Kids, adults, beginners, experienced players?
-*   **Where are you located?** This helps understand demand and competition.
-*   **Do you have any equipment or access to facilities?**
-
-The more information you can give me, the more tailored and potentially profitable advice I can provide. Let me know your thoughts!
-
-User: yes yes gimme a minute
-AI: Okay, take your time! I'll be here when you're ready with the details. No rush. Just let me know when you're ready to share.
-
-User: im intermediate in badminton
-AI: Great! "Intermediate in badminton" is a good start. Now we can start narrowing things down.
-
-To give you the best advice on *how* to make money teaching badminton, could you tell me:
-
-*   **Who do you want to teach?** (Kids, adults, beginners, experienced players, etc.)
-*   **Where are you located?** (City, state/province, country - just a general idea is fine.)
-*   **Do you have access to a court or equipment?** (Rackets, nets, shuttlecocks.)
-
-Knowing this information will help me determine the demand for badminton lessons in your area and what resources you'll need to get started. For example, teaching beginner adults in a city with limited badminton facilities might be different from teaching experienced kids in a rural area with a dedicated badminton club.
+The user wants to make money teaching sports (specifically badminton) and is open to teaching "whoever wants to learn". The AI is trying to provide tailored advice but emphasizes that it needs specific information to do so effectively. The AI has pressed the user multiple times to provide their location, whether they have access to facilities/equipment, and more detail about who they want to teach. It can only offer generalized ideas without this key information and asks the user to specify a target demographic within children and teens.
 
