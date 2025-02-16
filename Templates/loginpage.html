@@ -66,6 +66,7 @@
             font-size: 1rem;
             cursor: pointer;
             width: 100%;
+            margin-top: 10px;
         }
 
         .login-button:hover {
@@ -89,10 +90,13 @@
     <div class="logo">Your Logo</div>
     <h2>Login</h2>
 
-    <input type="email" id="email" class="input" placeholder="Email" required>
-    <input type="password" id="password" class="input" placeholder="Password" required>
-    <button id="loginBtn" class="login-button">Login</button>
-    <button type="button" id="google-login" class="login-button">Sign in with Google</button>
+    <form id="login-form">
+        <input type="email" id="email" class="input" placeholder="Email" required>
+        <input type="password" id="password" class="input" placeholder="Password" required>
+        <button type="submit" class="login-button">Login</button>
+    </form>
+
+    <button id="google-login" class="login-button">Sign in with Google</button>
 
     <div class="error-message" id="errorMsg"></div>
 
@@ -100,59 +104,62 @@
 </div>
 
 <script type="module">
-    // Import the Firebase modules (Same version as Firebase provided)
+    // Import Firebase modules
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
-  
-    // Firebase configuration (same as what Firebase provided)
+
+    // Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyDj58u62whklYCaMzHt3z3ynPYFJZFdL9w",
-      authDomain: "cybercypher-4ca0c.firebaseapp.com",
-      projectId: "cybercypher-4ca0c",
-      storageBucket: "cybercypher-4ca0c.firebasestorage.app",
-      messagingSenderId: "548139934166",
-      appId: "1:548139934166:web:5b2eaacc4fcc8c12240477",
-      measurementId: "G-717VLGG38P"
+        apiKey: "AIzaSyDj58u62whklYCaMzHt3z3ynPYFJZFdL9w",
+        authDomain: "cybercypher-4ca0c.firebaseapp.com",
+        projectId: "cybercypher-4ca0c",
+        storageBucket: "cybercypher-4ca0c.appspot.com",
+        messagingSenderId: "548139934166",
+        appId: "1:548139934166:web:5b2eaacc4fcc8c12240477",
+        measurementId: "G-717VLGG38P"
     };
-  
-    // 🔥 Initialize Firebase
+
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
-  
-    // **📌 Handle Email/Password Login**
-    document.querySelector("form").addEventListener("submit", async (e) => {
-      e.preventDefault(); // Prevent form refresh
-  
-      const email = e.target.username.value;
-      const password = e.target.password.value;
-  
-      try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log("✅ Logged in:", userCredential.user);
-        alert("Login successful!");
-        window.location.href = "dashboard.html"; // Redirect after login
-      } catch (error) {
-        console.error("❌ Login failed:", error.message);
-        alert("Login failed: " + error.message);
-      }
+
+    // **Email/Password Login**
+    document.getElementById("login-form").addEventListener("submit", async (event) => {
+        event.preventDefault(); // Prevent page refresh
+        
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const errorMsg = document.getElementById("errorMsg");
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            console.log("Logged in:", userCredential.user);
+            alert("Login successful!");
+            window.location.href = "dashboard.html"; // Redirect after login
+        } catch (error) {
+            console.error("Login failed:", error.message);
+            errorMsg.innerText = error.message;
+        }
     });
-  
-    // **📌 Handle Google Sign-In**
+
+    // **Google Sign-In**
     document.getElementById("google-login").addEventListener("click", async () => {
-      try {
-        const result = await signInWithPopup(auth, provider);
-        console.log("✅ Google Login Success:", result.user);
-        alert("Google Login successful!");
-        window.location.href = "dashboard.html"; // Redirect after login
-      } catch (error) {
-        console.error("❌ Google Login Failed:", error.message);
-        alert("Google Login failed: " + error.message);
-      }
+        const errorMsg = document.getElementById("errorMsg");
+
+        try {
+            const result = await signInWithPopup(auth, provider);
+            console.log("Google Login Success:", result.user);
+            alert("Google Login successful!");
+            window.location.href = "dashboard.html"; // Redirect after login
+        } catch (error) {
+            console.error("Google Login Failed:", error.message);
+            errorMsg.innerText = error.message;
+        }
     });
-  </script>
-  
+</script>
+
 </body>
 </html>
