@@ -62,9 +62,41 @@ def chatbot():
     
 @app.route('/get-response', methods=['POST'])
 def get_response():
+    if 'user' not in session:
+        return jsonify({"response": "Please log in first."})
+
+    user_id = session['user']['uid']
     user_message = request.json.get("message")
+    
+    # Get AI response
     bot_response = get_ai_response(user_message)
+
+    # Store in Firebase
+    ref = db.reference(f'chat_history/{user_id}')
+    ref.push({"sender": "user", "message": user_message})
+    ref.push({"sender": "bot", "message": bot_response})
+
     return jsonify({"response": bot_response})
+
+@app.route('/get-chat-history', methods=['GET'])
+def get_chat_history():
+    if 'user' not in session:
+        return jsonify([])  # No chat history if user is not logged in
+
+    user_id = session['user']['uid']  # Get the user's Firebase UID
+    ref = db.reference(f'chat_history/{user_id}')  # Reference user-specific chat history
+    history = ref.get() or {}  # Fetch history, return empty if None
+
+    chat_list = []
+    for key, chat in history.items():
+        chat_list.append({
+            "sender": chat.get("sender", "unknown"),
+            "message": chat.get("message", "")
+        })
+
+    print("Fetched chat history:", chat_list)  # Debugging log  
+    return jsonify(chat_list)  # Return history as JSON
+
 
 @app.route('/logout')
 def logout():
