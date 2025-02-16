@@ -7,9 +7,10 @@ load_dotenv()
 
 # Get API key from .env
 api_key = os.getenv("GEMINI_API_KEY")
-
+api_key_2 = os.getenv("OURAPIKEY")
 # Initialize the client with the API key
 client = genai.Client(api_key=api_key)
+client2 = genai.Client(api_key=api_key_2)
 
 LOG_FILE = "log.txt"  # File to store conversation history
 
@@ -61,7 +62,7 @@ def get_ai_response(user_input):
         return ai_response
 
     except Exception as e:
-        return "Error: Unable to generate response."
+        return "Error in generating response."
 
 def points_of_log():
     with open(LOG_FILE, "r") as file:
