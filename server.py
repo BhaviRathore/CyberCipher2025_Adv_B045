@@ -1,18 +1,18 @@
 from flask import Flask, render_template
 
-app = Flask(__name__, static_folder=".", template_folder=".")
+app = Flask(__name__, template_folder="Templates")  # Explicitly set template folder
 
-@app.route("/")
-def home():
-    return render_template("homepage.html")
+@app.route('/')
+def homepage():
+    return render_template('homepage.html')
 
-@app.route("/login")
+@app.route('/login')
 def login():
-    return render_template("loginpage.html")
+    return render_template('loginpage.html')
 
-@app.route("/dashboard")
+@app.route('/dashboard')
 def dashboard():
-    return render_template("dashboard.html")
+    return render_template('dashboard.html')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
