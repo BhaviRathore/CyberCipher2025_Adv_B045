@@ -53,6 +53,12 @@ def verify():
     except Exception as e:
         print("Authentication failed:", str(e))
         return jsonify({'success': False, 'error': str(e)}), 401
+
+@app.route('/chatbot')
+def chatbot():
+    if 'user' not in session:
+        return redirect(url_for('login'))  # Restrict access if not logged in
+    return render_template('chatbot.html')
     
 @app.route('/get-response', methods=['POST'])
 def get_response():
