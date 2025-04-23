@@ -8,10 +8,9 @@ app = Flask(__name__, template_folder="Templates")
 app.secret_key = "your_secret_key"  # Required for session handling
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("cybercypher-4ca0c-firebase-adminsdk-fbsvc-d64558a934.json")  # Update with your Firebase credentials
+cred = credentials.Certificate("")  # Update with Firebase credentials
 firebase_admin.initialize_app(cred, {
-    'databaseURL': "https://cybercypher-4ca0c-default-rtdb.asia-southeast1.firebasedatabase.app/"
-  # Update with your Firebase DB URL
+    'databaseURL': "" # Update with Firebase DB URL
 })
 
 @app.route('/')
